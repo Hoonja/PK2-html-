@@ -1,0 +1,6 @@
+mkdir /Users/hoonja/Documents/workspace/release/PK2/
+cp -Rv /Users/hoonja/Documents/workspace/web/PK2/css/ /Users/hoonja/Documents/workspace/release/PK2/css/
+cp -Rv /Users/hoonja/Documents/workspace/web/PK2/fonts/ /Users/hoonja/Documents/workspace/release/PK2/fonts/
+cp -Rv /Users/hoonja/Documents/workspace/web/PK2/js/ /Users/hoonja/Documents/workspace/release/PK2/js/
+cp /Users/hoonja/Documents/workspace/web/PK2/place.html /Users/hoonja/Documents/workspace/release/PK2/
+cp /Users/hoonja/Documents/workspace/web/PK2/style.css /Users/hoonja/Documents/workspace/release/PK2/
