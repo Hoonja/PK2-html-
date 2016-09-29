@@ -1,3 +1,6 @@
+body {
+  padding-top: 70px;
+}
 .item {
   border-color: #ddd;
   background-color: #fff;
@@ -49,6 +52,19 @@
   position: fixed;
   bottom: 0px;
 }
+.fixed-footer .btn{
+  border-top: 1px solid #cccccc;
+  background-color: white;
+}
 .border {
   border: 1px solid #cccccc;
+}
+.navbar p {
+  font-size: 80%;
+  display: inline-block;
+}
+.navbar button {
+  position:absolute;
+  top: 10px;
+  right: 15px;
 }
