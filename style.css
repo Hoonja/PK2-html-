@@ -68,3 +68,15 @@ body {
   top: 10px;
   right: 15px;
 }
+.download-banner {
+  text-align: center;
+}
+.download-banner img {
+    width: 114px;
+    margin: 12px 8px 0 8px;
+    vertical-align: middle;
+}
+.modal .content-text {
+  margin-top: 20px;
+  text-align: center;
+}
