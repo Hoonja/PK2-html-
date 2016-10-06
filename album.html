@@ -62,7 +62,7 @@
       <!-- 이미지 표시 부분 -->
       <div class="row image-container">
         <div class="col-xs-4">
-          <a class="thumbnail" href="#" data-toggle="modal" data-target="#modalImageViewer">
+          <a class="thumbnail" href="#" data-toggle="modal" data-target="#modalImageViewer" data-image-src="http://neapk-test01.japaneast.cloudapp.azure.com/media/summary/img/09F/642ECDC8D8695C86847F936B8796009F.img.summary.jpg">
             <img src="http://neapk-test01.japaneast.cloudapp.azure.com/media/summary/img/09F/642ECDC8D8695C86847F936B8796009F.img.summary.jpg">
           </a>
         </div>
@@ -217,7 +217,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="modalImageViewerLabel">사진 보기</h4>
           </div>
-          <img src="http://placekoob.com/media/rfs/2016/09/29/00000157755635B90000000007E6EE19.rf_image.jpg" alt="...">
+          <img id="full-image" src="" alt="...">
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
@@ -356,15 +356,19 @@
       }
 
       $('#modalMap').on('shown.bs.modal', function(event) {
+        console.log('modalMap shown');
         $(this).find('.modal-title').text($(event.relatedTarget).data('location-name') + '의 위치');
         initMap();
       });
 
       $('#modalImageViewer').on('shown.bs.modal', function(event) {
-        $('#modalImageViewer modal-content').css('text-align', 'center');
-        $('.modal-content img').css({
-          'max-width': document.getElementsByClassName('modal-content')[0].clientWidth - 5
+        console.log('image viewer shown');
+        $('#modalImageViewer .modal-content').css('text-align', 'center');
+        $('#modalImageViewer img').css({
+          // 'max-width': document.getElementsByClassName('modal-content')[0].clientWidth - 5
+          'max-width': $('#modalImageViewer .modal-content').width() - 10
         });
+        $(this).find('#full-image').attr('src', $(event.relatedTarget).data('image-src'));
       });
 
     </script>
