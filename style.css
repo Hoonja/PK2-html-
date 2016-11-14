@@ -104,24 +104,40 @@ body {
   padding: 0px;
 }
 
-#mask {
+/*#mask {
   position: absolute;
   z-index: 9000;
   background-color: #000;
   display: none;
 }
 
-#boxes .window {
+#mask .close {
+  opacity: 1;
+  color: white;
+  padding: 10px;
+  z-index: 10000;
+}*/
+
+#boxes {
   position: fixed;
-  width: 440px;
-  height: 200px;
-  display: none;
-  z-index: 9999;
-  padding: 20px;
-  background-color: #fff;
+  top: 0px;
+  left: 0px;
 }
 
-#boxes #image-viewer {
-  width: 375px;
-  height: 203px;
+#boxes .title-bar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: right;
+  padding: 10px;
+  background-color: red;
+  z-index: 9200;
+}
+
+#boxes .window {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: blue;
+  z-index: 9100;
 }
