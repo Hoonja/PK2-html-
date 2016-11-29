@@ -9,9 +9,9 @@
 
     <!-- 부트스트랩 -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
     <!-- 기타 스타일 시트 -->
     <link href="style.css" rel="stylesheet">
-    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
 
 
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
@@ -100,7 +100,7 @@
       </div>
       <div class="row image-container">
         <div class="col-xs-4 no-padding">
-          <a href="#image-viewer" name="modal" class="thumbnail no-border">
+          <a id="fotorama-show" href="#image-viewer" name="modal" class="thumbnail no-border">
             <img src="http://neapk-test01.japaneast.cloudapp.azure.com/media/summary/img/D76/A2294CB4D919CEC7AB76CD611D430D76.img.summary.jpg">
           </a>
         </div>
@@ -246,17 +246,14 @@
     </div>
 
     <!-- Custom Modal for Image Viewer -->
-    <div id="boxes">
-      <div class="title-bar">
-        <a href="#" class="close"><span class="glyphicon glyphicon-remove"></span></a>
-      </div>
-      <div id="image-viewer" class="window">
-        <div class="fotorama" data-width="100%" data-height="100%">
-        <!-- <div class="fotorama"> -->
-          <img src="http://s.fotorama.io/1.jpg">
-          <img src="http://s.fotorama.io/2.jpg">
-          <img src="http://neapk-test01.japaneast.cloudapp.azure.com/media/summary/img/09F/642ECDC8D8695C86847F936B8796009F.img.summary.jpg">
-          <img src="http://phopl.com/media/rfs/2016/11/02/0000015823607E0A0000000000074147.rf_image.jpg">
+    <div id="image-viewer" class="iviewer">
+      <div class="iviewer-content">
+        <div class="iviewer-header">
+          <span class="iviewer-close glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </div>
+        <div class="iviewer-body">
+          <div id="fotorama" class="fotorama" data-nav="thumbs" data-auto="false">
+          </div>
         </div>
       </div>
     </div>
@@ -368,6 +365,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkuFga8fr1c4PjzSAiHaBWo26zvQbtxB8&"></script>
     <script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <script language="javascript">
       'use strict';
 
@@ -550,6 +548,7 @@
           e.preventDefault();
           //  Get the A tag
           var id = $(this).attr('href');
+          console.log('id', id);
 
           //  Get the screen height and width
           var boxesHeight = $(window).height();
@@ -594,6 +593,58 @@
         constructImageViewer();
       });
 
+
+    </script>
+    <script>
+      var fotoramaDiv;
+      var fotorama;
+
+      function showSlide(index) {
+        fotorama = fotoramaDiv.data('fotorama');
+        if (fotorama === undefined) {
+          console.log('fotorama is undefined.');
+          setTimeout(function() {
+            showSlide(index);
+          }, 100);
+        } else {
+          console.log('fotorama is available.', fotorama);
+          fotorama.show(index);
+        }
+      }
+      function setUpImageViewer(index) {
+        var iviewer = document.getElementById('image-viewer');
+        var btn = document.getElementById('fotorama-show');
+        var span = document.getElementsByClassName('iviewer-close')[0];
+
+        btn.onclick = function() {
+          iviewer.style.display = 'block';
+          showSlide(0);
+        }
+        span.onclick = function() {
+          iviewer.style.display = 'none';
+        }
+      }
+      jQuery(document).ready(function($) {
+        setUpImageViewer();
+        fotoramaDiv = $('#fotorama').fotorama({
+          data: [
+            {
+              img: 'http://phopl.com/media/rfs/2016/11/02/0000015823607E0A0000000000074147.rf_image.jpg',
+              thumb: 'http://phopl.com/media/summary/img/FF4/7206E6B4B986CDBE92317552928D8FF4.img.summary.jpg'
+            },
+            {
+              img: 'http://phopl.com/media/rfs/2016/11/02/0000015823607E100000000000070D66.rf_image.jpg',
+              thumb: 'http://phopl.com/media/summary/img/8FD/80FE3DB3B8C628B9AADE71A6C7FA18FD.img.summary.jpg'
+            }
+          ]
+        });
+        // fotorama = fotoramaDiv.data('fotorama');
+        // $('.fotorama').on('fotorama:ready', function (e, fotorama) {
+        //   console.log('ready', e.type, fotorama.activeIndex);
+        //   fotorama = fotoramaDiv.data('fotorama');
+        //   console.log('ready fotorama', fotorama);
+        // });
+      });
 
     </script>
   </body>
