@@ -118,30 +118,6 @@ body {
   z-index: 10000;
 }*/
 
-#boxes {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-
-#boxes .title-bar {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  text-align: right;
-  padding: 10px;
-  background-color: red;
-  z-index: 9200;
-}
-
-#boxes .window {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: blue;
-  z-index: 9100;
-}
-
 .iviewer {
   display: none;
   position: fixed;
