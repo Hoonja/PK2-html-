@@ -211,3 +211,7 @@ body {
   font-size: 28px;
   font-weight: bold;
 }
+
+#image-viewer {
+  z-index: 2000;
+}
